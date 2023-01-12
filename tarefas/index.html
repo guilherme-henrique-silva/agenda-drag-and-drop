@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
+    <title>Agenda de tarefas</title>
+</head>
+<body>
+    
+    <nav>
+        <table class="navbar">
+            <tr>
+                <td><img class="menu-bar" src="../svg/bars-solid.svg"></td>
+                <td><a href="#">Início</a></td>
+                <td><a href="#">Tarefas</a></td>
+                <td><a href="#">Processos</a></td>
+                <td><a href="#">Cálculos</a></td>
+            </tr>
+        </table>
+
+        <table class="navbar-notif">
+            <tr>
+                <td>
+                    <a href="#" class="nav-link" role="button">
+                        <img src="../svg/magnifying-glass-solid.svg" class="nav-search">
+                    </a>
+                </td>
+                <td>
+                    <a href="#" class="nav-link" role="button">
+                        <img src="../svg/comments-regular.svg" class="nav-chat">
+                    </a>
+                </td>
+                <td>
+                    <a href="#" class="nav-link" role="button">
+                        <img src="../svg/bell-regular.svg" class="nav-bell">
+                    </a>
+                </td>
+                <td>
+                    <a href="#" class="nav-link" role="button">
+                        <img src="../svg/user-solid.svg" class="nav-user">
+                    </a>
+                </td>
+                <td>
+                    <div class="nav-theme-div">
+                        <input type="checkbox" class="theme" id="theme">
+                        <img src="../svg/sun-solid.svg" class="nav-sun">
+                        <div class="nav-theme-toggle">
+                            <div class="nav-theme-switch"></div>
+                        </div>
+                        <img src="../svg/moon-solid.svg" class="nav-moon">
+                    </div>
+                </td>
+            </tr>
+        </table>
+        
+    </nav>
+
+    <main>
+
+        <div class="dropdown search-drop hide" id="dropdown-search">
+            
+            <div class="search-container">
+                <div class="search-box">
+                    <input type="search" id="search-input" placeholder="Pesquisa rápida">
+                </div>
+                <img src="../svg/magnifying-glass-solid.svg" id="search-btn">
+            </div>
+            
+        </div>
+
+        <div class="dropdown chat-drop hide" id="dropdown-chat">
+            
+            <div class="list-container header-footer">2 conversas</div>
+            
+            <div class="list-container">
+                <img class="chat-user" src="../svg/user-solid.svg">
+                <div class="chat-container">
+                    <p class="chat-name">Guilherme</p>
+                    <p class="chat-last-message">Esta é uma versão demonstrativa</p>
+                    <div class="chat-time">
+                        <img src="../svg/clock-regular.svg">
+                        <p class="chat-last-sent">1 min atrás</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="list-container">
+                <img class="chat-user" src="../svg/user-solid.svg">
+                <div class="chat-container">
+                    <p class="chat-name">Felipe</p>
+                    <p class="chat-last-message">Utilizando Javascript puro</p>
+                    <div class="chat-time">
+                        <img src="../svg/clock-regular.svg">
+                        <p class="chat-last-sent">5 min atrás</p>
+                    </div>
+                </div>
+            </div>
+            <div class="list-container header-footer">Ver todas as mensagens</div>
+            
+        </div>
+
+        <div class="dropdown notif-drop hide" id="dropdown-notif">
+            
+            <div class="list-container header-footer">15 notificações</div>
+            <div class="list-container">Felipe marcou como concluída uma tarefa: "Escrever a petição inicial do sr. João Antônio</div>
+            <div class="list-container">Felipe lhe enviou um lembrete: "Protocolar a petição inicial do sr. João Antônio"</div>
+            <div class="list-container">Guilherme alterou o processo nº 00000000000-00.0000.0.00.0000</div>
+            <div class="list-container header-footer">Ver todas as notificações</div>
+            
+        </div>
+
+        <div class="dropdown user-drop hide" id="dropdown-user">
+            
+            <div class="list-container">Perfil</div>
+            <div class="list-container">
+                <img src="../svg/gears-solid.svg" class="img-list">Configurações</div>
+            <div class="list-container">
+                <img src="../svg/shield-halved-solid.svg" class="img-list">Segurança e Privacidade</div>
+            <div class="list-container header-footer" id="logout">
+                <img src="../svg/power-off-solid.svg" class="img-list">Log Out</div>
+            
+        </div>
+
+        <div class="section-container">
+
+            <section class="section-0">
+    
+                <dialog class="tarefas-dlg">
+    
+                    <div class="dlg-top">
+                        <div class="dlg-title">
+                            <p id="dlg-title">Tarefa</p>
+                            <span class="tarefa-id" id="tarefa-id">id #00000</span>
+                        </div>
+                        <img class="item-delete" id="item-delete" src="../svg/trash-can-solid.svg" title="Excluir tarefa da agenda">
+                    </div>
+                    
+                    <form id="tarefas-form" class="tarefas-form">
+
+                        <div>
+
+                            <label for="tarefa-title">Título</label>
+                            <input type="text" id="tarefa-title" name="dlg-tarefa-form" placeholder="Título da tarefa">
+        
+                            <label for="tarefa-time">Horário</label>
+                            <input type="time" class="tarefa-time" id="tarefa-time" name="dlg-tarefa-form">
+    
+                            
+                            <dialog class="tarefa-icons-dlg" id="tarefa-icons-dlg">
+
+                                <p>Selecione o ícone:</p>
+        
+                                <div class="icons-container">
+        
+                                    <img id="no-icon" name="tarefa-icon" src="../svg/No_image.svg" title="Sem ícone">
+                                    <img name="tarefa-icon" src='../svg/check-solid.svg' title="Check">                        
+                                    <img name="tarefa-icon" src='../svg/check-double-solid.svg' title="Check duplo">                        
+                                    <img name="tarefa-icon" src='../svg/circle-solid.svg' title="Círculo">                        
+                                    <img name="tarefa-icon" src='../svg/circle-check-solid.svg' title="Check círculo">                        
+                                    <img name="tarefa-icon" src='../svg/file-solid.svg' title="Arquivo">                      
+                                    <img name="tarefa-icon" src='../svg/file-lines-solid.svg' title="Arquivo linhas">                      
+                                    <img name="tarefa-icon" src='../svg/calendar-solid.svg' title="Calendário">
+                                    <img name="tarefa-icon" src='../svg/comment-dots-solid.svg' title="Comentário">                        
+                                    <img name="tarefa-icon" src='../svg/bell-solid.svg' title="Sino">                      
+                                    <img name="tarefa-icon" src='../svg/brazilian-real-sign-solid.svg' title="Real">
+                                    <img name="tarefa-icon" src='../svg/money-bill-1-wave-solid.svg' title="Dinheiro">
+                                    <img name="tarefa-icon" src='../svg/calculator-solid.svg' title="Calculadora">
+                                    <img name="tarefa-icon" src='../svg/handshake-solid.svg' title="Aperto de mãos">
+                                    <img name="tarefa-icon" src='../svg/magnifying-glass-solid.svg' title="Lupa">
+                                    <img name="tarefa-icon" src='../svg/key-solid.svg' title="Chave">
+                                    <img name="tarefa-icon" src='../svg/landmark-solid.svg' title="Fórum">
+                                    <img name="tarefa-icon" src='../svg/location-crosshairs-solid.svg' title="Localização">
+                                    
+                                </div>
+                                                      
+                                <button type="button" class="icons-cancel-btn" id="icons-cancel-btn">Cancelar</button>
+
+                            </dialog>
+
+                        </div>
+
+                        <div>
+                            
+                            <label for="tarefa-prazo">Prazo</label>
+                            <input type="date" class="tarefa-prazo" id="tarefa-prazo" name="dlg-tarefa-form">
+
+                            <label for="tarefa-icons">Ícone</label>
+                            <img class="tarefa-selected-icon" src='../svg/circle-solid.svg'>
+                            <button type="button" id="tarefa-icons-btn" name="dlg-tarefa-form">...</button>
+
+                        </div>
+
+                        <div>
+
+                            <textarea rows="6" cols="55" maxlength="250" style="resize: vertical;" id="tarefa-descr" form="tarefas-form" placeholder="Descrição"></textarea>
+                            <p class="textarea-max">Máx. 250 caracteres</p>
+
+                        </div>
+                           
+                    </form>
+                    
+                    <button type="button" id="tarefas-btn-save" class="tarefas-btn-save">Salvar</button>
+                    <button type="button" id="tarefas-btn-close" class="tarefas-btn-close">Fechar</button>
+    
+                </dialog>
+    
+                <div class="container-events">
+                    <h3>Eventos</h3>
+                    <div class="drag-events">
+    
+                        <div class="event-box">
+                            <div class="event" id="event_audiencia_instr" draggable="true">
+                                <img src="../svg/landmark-solid.svg" draggable="false">
+                                <p>Audiência Instrução</p>
+                            </div>
+                        </div>
+    
+                        <div class="event-box">
+                            <div class="event" id="event_audiencia_conc" draggable="true">
+                                <img src="../svg/handshake-solid.svg" draggable="false">
+                                <p>Audiência Conciliação</p>
+                            </div>
+                        </div>
+    
+                        <div class="event-box">
+                            <div class="event" id="event_pagamento" draggable="true">
+                                <img src="../svg/brazilian-real-sign-solid.svg" draggable="false">
+                                <p>Pagamento</p>
+                            </div>
+                        </div>
+    
+                        <div class="event-box">
+                            <div class="event" id="event_pericia" draggable="true">
+                                <img src="../svg/user-doctor-solid.svg" draggable="false">
+                                <p>Perícia</p>
+                            </div>
+                        </div>
+    
+                        <div class="event-box">
+                            <div class="event" id="event_prazo" draggable="true">
+                                <img src="../svg/calendar-solid.svg" draggable="false">
+                                <p>Prazo</p>
+                            </div>
+                        </div>
+    
+                        <div class="event-box">
+                            <div class="event" id="event_reuniao" draggable="true">
+                                <img src="../svg/comment-solid.svg" draggable="false">
+                                <p>Reunião</p>
+                            </div>
+                        </div>
+    
+                    </div>
+                </div>
+        
+                <div class="container">
+    
+                    <div class="container-top">
+    
+                        <div class="top-new-event">
+                            <p>Criar novo evento</p>
+                            <div class="new-events">
+                                <input type="text" id="new-event" placeholder="Nome do evento">
+                                <button class="new-event-btn" id="new-event-btn">
+                                    <img src="../svg/plus-solid.svg">Adicionar
+                                </button>
+                            </div>
+                        </div>
+    
+                        <h3 class="top-title">Tarefas</h3>
+    
+                    </div>
+    
+                    <div class="drop-targets" id="drop-targets">
+        
+                        <div>
+                            <div class="day-box">
+                                <p>Dom</p>
+                            </div>
+    
+                            <div class="box">
+                                <p class="box-date">dd/mm</p>                            
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="day-box">
+                                <p>Seg</p>
+                            </div>
+                            <div class="box">
+                                <p class="box-date">dd/mm</p>
+                                <!-- Todos os presets estão com as cores padrão -->
+                                <div class="item" id="preset_1" draggable="true">
+                                    <time>09:30</time>
+                                    <img src="../svg/comment-dots-solid.svg">
+                                    <p>Reunião com cliente</p>
+                                    <p>Elis Regina</p>
+                                </div>                            
+                                <div class="item" id="preset_2" draggable="true">
+                                    <time>14:00</time>
+                                    <img src="../svg/handshake-solid.svg">
+                                    <p>Audiência de Conciliação</p>
+                                    <p>Renato Gaúcho</p>
+                                </div>                            
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="day-box">
+                                <p>Ter</p>
+                            </div>
+                            <div class="box">
+                                <p class="box-date">dd/mm</p>
+                                <!-- Todos os presets estão com as cores padrão -->
+                                <div class="item" id="preset_3" draggable="true">
+                                    <time></time>
+                                    <img src="../svg/file-lines-solid.svg">
+                                    <p>Prazo</p>
+                                    <p>Protocolar ação do sr. Silvo Santos</p>
+                                </div>                     
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="day-box">
+                                <p>Qua</p>
+                            </div>
+                            <div class="box">
+                                <p class="box-date">dd/mm</p>
+                                <!-- Todos os presets estão com as cores padrão -->
+                                <div class="item" id="preset_4" draggable="true">
+                                    <time>13:00</time>
+                                    <img src="../svg/landmark-solid.svg">
+                                    <p>Audiência de Instrução</p>
+                                    <p>Ayrton Senna</p>
+                                </div>
+                                <div class="item" id="preset_5" draggable="true">
+                                    <time>14:30</time>
+                                    <img src="../svg/landmark-solid.svg">
+                                    <p>Audiência de Instrução</p>
+                                    <p>Cristiano Ronaldo</p>
+                                </div>                            
+                                <div class="item" id="preset_6" draggable="true">
+                                    <time></time>
+                                    <img src="../svg/folder-solid.svg">
+                                    <p>Organizar documentação</p>
+                                    <p>Nicholas Tesla</p>
+                                </div>                            
+                            </div>                
+                        </div>
+                        
+                        <div>
+                            <div class="day-box">
+                                <p>Qui</p>
+                            </div>
+                            <div class="box">
+                                <p class="box-date">dd/mm</p>                            
+                            </div>                    
+                        </div>
+                        
+                        <div>
+                            <div class="day-box">
+                                <p>Sex</p>
+                            </div>
+                            <div class="box">
+                                <p class="box-date">dd/mm</p>
+                                <!-- Todos os presets estão com as cores padrão -->
+                                <div class="item" id="preset_7" draggable="true">
+                                    <time></time>
+                                    <img src="../svg/brazilian-real-sign-solid.svg">
+                                    <p>Pagamento</p>
+                                    <p>Bruce Dickinson</p>
+                                </div>                            
+                                <div class="item" id="preset_8" draggable="true">
+                                    <time>09:00</time>
+                                    <img src="../svg/user-doctor-solid.svg">
+                                    <p>Perícia</p>
+                                    <p>Ada Lovelace</p>
+                                </div>                           
+                            </div>                    
+                        </div>
+                        
+                        <div>
+                            <div class="day-box">
+                                <p>Sab</p>
+                            </div>
+                            <div class="box">
+                                <p class="box-date">dd/mm</p>                            
+                            </div>                    
+                        </div>
+                        
+                    </div>
+                </div>
+    
+            </section>
+    
+            <section class="section-1">
+                
+                <div class="todo-container">
+
+                    <div class="todo-list">
+                        <p>Em construção</p>
+                    </div>
+                    <div class="todo-list">
+                        <p>Em construção</p>
+                    </div>
+
+                </div>
+                
+            </section>
+
+        </div>
+
+        <div class="scroll-container">
+            <div class="scroll-x">
+                <img src="../svg/chevron-left-solid.svg" id="scroll-left" title="Agenda de tarefas">
+                <img src="../svg/chevron-right-solid.svg" id="scroll-right" title="Lista de tarefas">
+            </div>
+        </div>
+
+    </main>
+
+    <footer>
+        <p>Guilherme Henrique da Silva, 2023 - guilhermehenriquesilva.dev@gmail.com</p>
+    </footer>
+    
+    <script src="tarefas.js"></script> <!-- Drag and drop de tarefas -->
+    <script src="index.js"></script> <!-- Comportamento da barra de navegação -->
+</body>
+</html>
